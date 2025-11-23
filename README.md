@@ -34,31 +34,32 @@
 ## Структура проекта
 
 tg_bot/
-├── cmd/ main.go                 # Точка входа, инициализация
+├── cmd/
+│   └── main.go                 # Точка входа, инициализация
 ├── internal/
-│   ├── adapters/           # Адаптеры внешних API
-│   │   ├── zenquotes.go      # Клиент ZenQuotes API
-│   │   ├── mymemory.go       # Клиент MyMemory Translation API
-│   │   ├── weather.go        # Клиент WeatherAPI.com
-│   │   ├── valuteApi.go      # Клиент ExchangeRate API
-│   │   └── telegrapBotApi.go # Telegram Bot API обертка
-│   ├──interfaces/        # Контракты интерфейсов
-│   │   └── api.go           # Все интерфейсы сервисов
-│   ├──models/           # Модели данных
-│   │   ├── quote.go         # Модель цитаты
-│   │   ├── translation.go   # Модель перевода
-│   │   ├── weather.go       # Модель погоды
-│   │   └── valute.go        # Модель валют
-│   ├── service/          # Бизнес-логика
-│   │   ├── fetch_quote.go   # Сервис цитат и перевода
-│   │   └── send_message.go  # Сервис Telegram рассылки
-│   └──config/           # Конфигурация
-│       └── config.go        # Загрузка environment variables
-├── DockerFile                     # Конфигурация контейнера
-├── .env.example                   # Пример файла конфигурации
-├── .gitignore                     # Git ignore правила
-├── go.mod                         # Модули Go
-└── README.md                      # Документация проекта
+│   ├── adapters/               # Адаптеры внешних API
+│   │   ├── zenquotes.go       # Клиент ZenQuotes API
+│   │   ├── mymemory.go        # Клиент MyMemory Translation API
+│   │   ├── weather.go         # Клиент WeatherAPI.com
+│   │   ├── valuteApi.go       # Клиент ExchangeRate API
+│   │   └── telegrapBotApi.go  # Telegram Bot API обертка
+│   ├── interfaces/            # Контракты интерфейсов
+│   │   └── api.go            # Все интерфейсы сервисов
+│   ├── models/               # Модели данных
+│   │   ├── quote.go          # Модель цитаты
+│   │   ├── translation.go    # Модель перевода
+│   │   ├── weather.go        # Модель погоды
+│   │   └── valute.go         # Модель валют
+│   ├── service/              # Бизнес-логика
+│   │   ├── fetch_quote.go    # Сервис цитат и перевода
+│   │   └── send_message.go   # Сервис Telegram рассылки
+│   └── config/               # Конфигурация
+│       └── config.go         # Загрузка environment variables
+├── Dockerfile                # Конфигурация контейнера
+├── .env.example              # Пример файла конфигурации
+├── .gitignore               # Git ignore правила
+├── go.mod                   # Модули Go
+└── README.md                # Документация проекта
 
 
 ## Примечание
