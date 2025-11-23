@@ -1,10 +1,11 @@
-FROM golang:1.20-alpine AS builder
-WORKDIR /app
-COPY go.mod go.sum ./
-RUN go mod download
-COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o bot ./cmd
+FROM golang:1.23-alpine
 
-FROM alpine:latest
-COPY --from=builder /app/bot /bot
+WORKDIR /app
+
+COPY . .
+
+RUN CGO_ENABLED=0 go build -o /bot cmd/main.go
+
+RUN apk add --no-cache git ca-certificates tzdata && update-ca-certificates
+
 CMD ["/bot"]
