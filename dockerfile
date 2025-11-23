@@ -1,13 +1,10 @@
-FROM golang:1.25.0
-
+FROM golang:1.20-alpine AS builder
 WORKDIR /app
-
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o bot ./cmd
 
-# Убираем дублирующую сборку, оставляем одну
-RUN go build -o tg_bot ./cmd
-
-# Исправляем опечатку в CMD
-CMD ["./tg_bot"]
+FROM alpine:latest
+COPY --from=builder /app/bot /bot
+CMD ["/bot"]
