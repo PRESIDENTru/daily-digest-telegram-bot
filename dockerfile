@@ -1,11 +1,11 @@
-FROM golang:1.23-alpine
+FROM golang:1.25.0
 
-WORKDIR /myapp
+WORKDIR /app
 
+COPY go.mod go.sum ./
+RUN go mod download
 COPY . .
 
-RUN CGO_ENABLED=0 go build -o /bot cmd/main.go
+RUN go build -o tg_bot ./cmd
 
-RUN apk add --no-cache git ca-certificates tzdata && update-ca-certificates
-
-CMD ["/bot"]
+CMD ["./tg_bot"]
