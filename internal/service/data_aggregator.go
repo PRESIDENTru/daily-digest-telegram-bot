@@ -28,8 +28,6 @@ func NewQuoteService(
 	}
 }
 
-// добавить мб валидацию
-
 func (s *QuoteService) GetTranslatedQuote(ctx context.Context) (string, error) {
 	quote, err := s.quoteAPI.GetQuote(ctx)
 

@@ -26,7 +26,6 @@ func NewWeatherAPI(token string) *WeatherAPI {
 }
 
 func (w *WeatherAPI) GetWeather(ctx context.Context, city string) (*models.WeatherResponse, error) {
-	//валидацию города
 	req_str := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s&lang=ru", w.token, city)
 	req, err := http.NewRequestWithContext(ctx, "GET", req_str, nil)
 

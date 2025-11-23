@@ -27,7 +27,6 @@ func (s *SendMessageService) StartListening(ctx context.Context, receiver interf
 	})
 }
 
-// city из чата либо базово из конфига
 func (s *SendMessageService) HandleUpdate(update tgbotapi.Update, ctx context.Context) {
 	if update.Message == nil {
 		return

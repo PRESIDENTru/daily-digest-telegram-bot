@@ -11,7 +11,6 @@ import (
 type Config struct {
 	BotToken     string
 	WeatherToken string
-	//City Для погоды
 }
 
 func LoadConfig(logger *slog.Logger) (*Config, error) {
@@ -26,8 +25,6 @@ func LoadConfig(logger *slog.Logger) (*Config, error) {
 		logger.Error("Переменные окружения отсутсвуют")
 		return nil, errors.New("необходимые переменные окружения отсутсвуют")
 	}
-
-	//Валидация
 
 	return &Config{
 		BotToken:     botToken,
