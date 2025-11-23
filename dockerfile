@@ -5,7 +5,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
+
 RUN go build -o tg_bot ./cmd
 
-CMD ["./tg_bog"]
-
+CMD ["./tg_bot"]
