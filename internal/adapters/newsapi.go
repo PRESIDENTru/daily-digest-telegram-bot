@@ -1,0 +1,3 @@
+package adapters
+
+//4de5f83544924686b88061b4e7199976
