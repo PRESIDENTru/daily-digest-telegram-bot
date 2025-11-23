@@ -9,8 +9,6 @@ import (
 	"tg_bot/internal/adapters"
 	"tg_bot/internal/config"
 	"tg_bot/internal/service"
-
-	"github.com/joho/godotenv"
 )
 
 func setupLogger() *slog.Logger {
@@ -24,10 +22,6 @@ func main() {
 	logger := setupLogger()
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
-
-	if err := godotenv.Load(); err != nil {
-		logger.Warn("Файл .env не найден или не загружен")
-	}
 
 	cfg, err := config.LoadConfig(logger)
 	if err != nil {
