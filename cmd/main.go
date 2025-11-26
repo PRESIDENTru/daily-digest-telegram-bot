@@ -34,7 +34,7 @@ func main() {
 	weatherAPI := adapters.NewWeatherAPI(cfg.WeatherToken)
 	valuteAPI := adapters.NewValuteAPI()
 
-	quoteService := service.NewQuoteService(quoteAPI, mymemoryAPI, weatherAPI, valuteAPI)
+	quoteService := service.NewDataAggregatorService(quoteAPI, mymemoryAPI, weatherAPI, valuteAPI)
 	telegramAPI, err := adapters.NewTelegramAdapter(cfg.BotToken)
 	if err != nil {
 		logger.Error("ошибка создания адаптера telegramAPI")

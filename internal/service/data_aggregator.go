@@ -7,20 +7,20 @@ import (
 	"tg_bot/internal/models"
 )
 
-type QuoteService struct {
+type DataAggregatorService struct {
 	quoteAPI     interfaces.QouteAPI
 	translateAPI interfaces.TranlateAPI
 	weatherAPI   interfaces.WeatherAPI
 	valuteAPI    interfaces.ValuteAPI
 }
 
-func NewQuoteService(
+func NewDataAggregatorService(
 	quoteAPI interfaces.QouteAPI,
 	translateAPI interfaces.TranlateAPI,
 	weatherAPI interfaces.WeatherAPI,
 	valuteAPI interfaces.ValuteAPI,
-) *QuoteService {
-	return &QuoteService{
+) *DataAggregatorService {
+	return &DataAggregatorService{
 		quoteAPI:     quoteAPI,
 		translateAPI: translateAPI,
 		weatherAPI:   weatherAPI,
@@ -28,7 +28,7 @@ func NewQuoteService(
 	}
 }
 
-func (s *QuoteService) GetTranslatedQuote(ctx context.Context) (string, error) {
+func (s *DataAggregatorService) GetTranslatedQuote(ctx context.Context) (string, error) {
 	quote, err := s.quoteAPI.GetQuote(ctx)
 
 	if err != nil {
@@ -43,7 +43,7 @@ func (s *QuoteService) GetTranslatedQuote(ctx context.Context) (string, error) {
 	return result, nil
 }
 
-func (s *QuoteService) GetWeatherInfo(ctx context.Context, city string) (string, error) {
+func (s *DataAggregatorService) GetWeatherInfo(ctx context.Context, city string) (string, error) {
 	weather, err := s.weatherAPI.GetWeather(ctx, city)
 
 	if err != nil {
@@ -58,7 +58,7 @@ func (s *QuoteService) GetWeatherInfo(ctx context.Context, city string) (string,
 	return result, nil
 }
 
-func (s *QuoteService) GetValuteRUB(ctx context.Context) (string, error) {
+func (s *DataAggregatorService) GetValuteRUB(ctx context.Context) (string, error) {
 	results := make(chan *models.Valute, 3)
 	go func() {
 		usd, err := s.valuteAPI.GetValute(ctx, "USD")
